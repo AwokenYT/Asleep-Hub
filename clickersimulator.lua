@@ -7,6 +7,9 @@ local Window = Library.CreateLib("Asleep Hub | Anime Clicker Simulator", "GrapeT
 local Main = Window:NewTab("Main")
 local mainSection = Main:NewSection("Autofarm")
 local teleportsSection = Main:NewSection("Teleports")
+local Misc = Window:NewTab("Misc")
+local playerSection = Misc:NewSection("Player")
+local creditSection = Misc:NewSection("Credits")
 local remotePath = game:GetService("ReplicatedStorage").Remotes
 local rebirthAmount
 local selectEgg
@@ -96,6 +99,20 @@ end)
 teleportsSection:NewButton("Teleport To World", "Teleport to selected world", function ()
     teleportWorld(selectWorld)
 end)
+
+playerSection:NewSlider("Walkspeed", "Change your walkspeed", 200, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+playerSection:NewButton("Set Walkspeed To 16", "Self Explanatory", function ()
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+end)
+
+playerSection:NewKeybind("Close Keybind", "Self Explanatory", Enum.KeyCode.LeftControl, function()
+	Library:ToggleUI()
+end)
+
+creditSection:NewLabel("Creator: Asleep#6913")
 
 function doTap()
     spawn(function()
